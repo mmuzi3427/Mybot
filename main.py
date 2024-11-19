@@ -185,4 +185,183 @@ def get_search(m):
         except:
             bot.send_message(m.chat.id, "У меня нет информации,\nкоторый вы ищете!", reply_markup=Tilbtn.tu())
 @bot.callback_query_handler(func=lambda call: True)
-
+def call(call):
+    def wiki(m):
+        try:
+            funcs.addwiki(call.from_user.id, m)
+            bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text=f"🔎\n\n{funcs.getmatn(call.from_user.id)}|", reply_markup=kvuz.kv1())
+        except:
+            bot.answer_callback_query(callback_query_id=call.id, text="❌ Xatolik\nJuda koʻp tugmani bosib yubordingiz!", show_alert=True)
+    def delta(natija):
+        Nat.nat(call.from_user.id, natija)
+    def n():
+        Nat.true(call.from_user.id)
+    def vid(v):
+        bot.send_video(call.message.chat.id, v)
+    def editing(b):
+        func.getson(call.message.chat.id, b)
+        nat = func.hisobla(call.from_user.id)
+        if nat == None:
+            bot.answer_callback_query(call.id, "Xatolik yuz berdi", show_alert=True)
+            func.clear(call.from_user.id)
+        else:
+            bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text=func.retson(call.from_user.id) + "\n                             Natija : " + nat + "\n....@Matematikauniversalbot....", reply_markup=Calcbtn.calcb())
+    def editing1(b):
+        try:
+            func.getamal(call.message.chat.id, b)
+            bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text=func.retson(call.from_user.id) + "\n....@Matematikauniversalbot....", reply_markup= Calcbtn.calcb())
+        except:
+            bot.answer_callback_query(call.id, "Xatolik yuz berdi!\nAC tugmasini bosing!", show_alert=True)
+    def editing2(b):
+        try:
+            func.getfloot(call.message.chat.id, b)
+            nat = func.hisobla(call.from_user.id)
+            if nat == None:
+                bot.answer_callback_query(call.id, "Xatolik yuz berdi", show_alert=True)
+                func.clear(call.from_user.id)
+            else:
+                bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text=func.retson(call.from_user.id) + "\n                             Natija : " + nat + "\n....@Matematikauniversalbot....", reply_markup= Calcbtn.calcb())
+        except:
+            bot.answer_callback_query(call.id, "Xatolik yuz berdi⚠️\n Bu yerga nuqta qoʻyolmasysiz! Matematik xato?", show_alert=True)
+    test = bot.get_chat_member(channel, call.from_user.id).status
+    if call.from_user.language_code == "uz":
+        if test != "left":
+            if call.data == "obuna":
+                bot.delete_message(call.message.chat.id, call.message.message_id)
+                bot.send_message(call.message.chat.id, f"Assalomu Alaykum {call.from_user.first_name}\n\nmen MATEMATIKA FANIDAN TESTLAR kanalining rasmiy botiman ", reply_markup=Calcbtn.k1())
+            elif call.data == "fam":
+                try:
+                    bot.delete_message(call.message.chat.id, call.message.message_id)
+                    bot.delete_message(call.message.chat.id, call.message.message_id - 1)
+                    bot.send_message(call.message.chat.id, "Familiyangizni kiriting!")
+                    bot.register_next_step_handler(call.message, get2)
+                except:
+                    bot.send_message(call.message.chat.id, "Familiyangizni kiriting!")
+                    bot.register_next_step_handler(call.message, get2)
+            elif call.data == "ism":
+                try:
+                    bot.delete_message(call.message.chat.id, call.message.message_id)
+                    bot.delete_message(call.message.chat.id, call.message.message_id - 1)
+                    bot.send_message(call.message.chat.id, "Ismingizni qayta kiriting!", reply_markup=False)
+                    bot.register_next_step_handler(call.message, get1)
+                except:
+                    bot.send_message(call.message.chat.id, "Ismingizni qayta kiriting!", reply_markup=False)
+                    bot.register_next_step_handler(call.message, get1)
+            elif call.data == "eyosh":
+                try:
+                    bot.delete_message(call.message.chat.id, call.message.message_id)
+                    bot.delete_message(call.message.chat.id, call.message.message_id - 1)
+                    bot.send_message(call.message.chat.id, "Yoshingizni qayta kiriting!")
+                    bot.register_next_step_handler(call.message, get3)
+                except:
+                    bot.send_message(call.message.chat.id, "Yoshingizni qayta kiriting!")
+                    bot.register_next_step_handler(call.message, get3)
+            elif call.data == "enter":
+                try:
+                    d = wikipedia.search(funcs.getmatn(call.from_user.id))
+                    m = ""
+                    n1 = 0
+                    for l in d:
+                        r = n1 + 1
+                        n1 = n1 + 1
+                        m += f"{r}) {l}\n\n"
+                    bot.send_message(call.message.chat.id, wikipedia.summary(funcs.getmatn(call.from_user.id)), reply_markup=Calcbtn.delete(), parse_mode="html")
+                    bot.send_message(call.message.chat.id, f"Balki xato qilgandirsiz!!! 👇\n\n{m}", reply_markup=kvuz.kv())
+                    bot.delete_message(call.message.chat.id, call.message.message_id)
+                    funcs.del1(call.from_user.id)
+                except:
+                    try:
+                        bot.send_message(call.message.chat.id, lugat.pydev[(funcs.getmatn(call.from_user.id).lower())], reply_markup=kvuz.kv())
+                        funcs.del1(call.from_user.id)
+                        bot.delete_message(call.message.chat.id, call.message.message_id)
+                    except:
+                        bot.answer_callback_query(callback_query_id=call.id, text="❌ Topa olmadim! ✏️", show_alert=True)
+                        funcs.del1(call.from_user.id)
+            elif call.data == "33_dars":
+                vid("BAACAgIAAxkBAAISKmb5RQbzic_SGElAlYCpo1GNuFRGAAIFKQACbAsoSsos7677_ejbNgQ")
+            elif call.data == "del":
+                try:
+                    bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text="🔎\n\n|", reply_markup=kvuz.kv())
+                    funcs.del1(call.from_user.id)
+                except:
+                    bot.answer_callback_query(callback_query_id=call.id, text="Allaqachon tozalangan! ✅", show_alert=True)
+            elif call.data == "toza":
+                try:
+                    funcs.toza(call.from_user.id)
+                    bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text="Kalkulyator tarixi tozalandi hisoblashda davom etishingiz mumkin!...", reply_markup=Calcbtn.calcb())
+                except:
+                    bot.answer_callback_query(callback_query_id=call.id, text="Juda koʻp urunishlar ❌\nMa'lumotlar tozalangan!\nRaqamlar ustiga bosib hisoblashda davom etishingiz mumkin. Hammasi 0 dan boshlanadi✅", show_alert=True)
+            elif call.data == "deletec":
+                try:
+                    func.remove1(call.from_user.id)
+                    nat = func.hisobla(call.from_user.id)
+#                    bot.send_message(call.message.chat.id, str(func.retson(call.message.chat.id)))
+                    bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text=func.retson(call.from_user.id) + "\n                              Natija : " + nat + "\n....@Matematikauniversalbot....", reply_markup=Calcbtn.calcb())
+                except:
+                    bot.answer_callback_query(call.id, "Xatolik yuz berdi", show_alert=True)
+            elif call.data == "a":
+                wiki("a")
+            elif call.data == "q":
+                wiki("q")
+            elif call.data =="w":
+                wiki("w")
+            elif call.data =="e":
+                wiki("e")
+            elif call.data =="r":
+                wiki("r")
+            elif call.data =="t":
+                wiki("t")
+            elif call.data =="y":
+                wiki("y")
+            elif call.data =="u":
+                wiki("u")
+            elif call.data =="i":
+                 wiki("i")
+            elif call.data =="o":
+                wiki("o")
+            elif call.data =="p":
+                wiki("p")
+            elif call.data =="o1":
+                wiki("oʻ")
+            elif call.data =="s":
+                wiki("s")
+            elif call.data =="d":
+                wiki("d")
+            elif call.data =="f":
+                wiki("f")
+            elif call.data =="g":
+                wiki("g")
+            elif call.data == "h":
+                wiki("h")
+            elif call.data =="j":
+                wiki("j")
+            elif call.data =="k":
+                wiki("k")
+            elif call.data =="l":
+                wiki("l")
+            elif call.data =="g1":
+                wiki("gʻ")
+            elif call.data =="tutuq":
+                wiki("ʼ")
+            elif call.data =="z":
+                wiki("z")
+            elif call.data =="x":
+                wiki("x")
+            elif call.data =="c":
+                wiki("c")
+            elif call.data =="v":
+                wiki("v")
+            elif call.data =="b":
+                wiki("b")
+            elif call.data =="n":
+                wiki("n")
+            elif call.data =="m":
+                wiki("m")
+            elif call.data ==",":
+                wiki(",")
+            elif call.data =="pro":
+                wiki(" ")
+            elif call.data ==".":
+                funcs.addwiki(call.from_user.id, ". ")
+                bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text=f"🔎\n\n{funcs.getmatn(call.from_user.id)}|", reply_markup=kvuz.kv())
+            
